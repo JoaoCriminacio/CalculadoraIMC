@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/ronaldao.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 0;
+    color: #fff;
+    font-family: "Roboto", serif;
+    font-size: 1rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 1.5rem;
+    border: 1px solid #000;
+    border-radius: 0.5rem;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container input[type="text"] {
+    padding: 0.4rem;
+    border: none;
+    border-radius: 0.5rem;
+    margin: 0.8rem 0;
+}
+
+.container input[type="submit"] {
+    width: 70%;
+    padding: 0.3rem;
+    margin-top: 1rem;
+    border: 1px solid #2196F3;
+    border-radius: 0.5rem;
+    align-self: center;
+    color: #fff;
+    background-color: #2196F3;
+}
