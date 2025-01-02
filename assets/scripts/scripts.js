@@ -7,29 +7,42 @@ Entre 25 e 29.99 --> Acima do peso
 
 // peso / (altura * altura);
 
-var peso;
-var altura;
-var imc;
-var resultado = document.getElementById('resultado');
+let imcQuebrado;
+let imc;
+let pesoIdeal;
+let resultado = document.getElementById('resultado');
 
 function calcular(event) {
     event.preventDefault();
 
-    peso = document.getElementById('peso').value;
-    altura = document.getElementById('altura').value;
+    let peso = document.getElementById('peso').value.replace(',', '.');
+    let altura = document.getElementById('altura').value.replace(',', '.');
 
-    imc = peso / (altura * altura);
+    peso = parseFloat(peso);
+    altura = parseFloat(altura);
+
+    if (isNaN(peso) || isNaN(altura) || peso <= 0 || altura <= 0) {
+        resultado.innerHTML = '<p>Por favor, insira valores válidos para peso e altura</p>';
+        return;
+    }
+
+    imcQuebrado = peso / (altura * altura);
+    imc = imcQuebrado.toFixed(2);
 
     if (imc < 17) {
-        resultado.innerHTML = '<br>Seu resultado foi: ' + imc.toFixed(2) + '<br> <br>Cuidado você está muito abaixo do peso!';
-    } else if ((imc > 17) && (imc <= 18.49)) {
-        resultado.innerHTML = '<br>Seu resultado foi: ' + imc.toFixed(2) + '<br> <br>Você está abaixo do peso!';
-    } else if ((imc > 18.5) && (imc <= 24.99)) {
-        resultado.innerHTML = '<br>Seu resultado foi: ' + imc.toFixed(2) + '<br> <br>Você está no peso ideal!';
+        pesoIdeal = ((altura * altura) * 18.5);
+        resultado.innerHTML = '<p>Seu resultado foi: ' + imc + '</p> <p>Cuidado você está muito abaixo do peso!</p> <p>Seu peso ideal seria: ' + pesoIdeal.toFixed(2)  + 'kg</p>';
+    } else if ((imc >= 17) && (imc <= 18.49)) {
+        pesoIdeal = ((altura * altura) * 18.5);
+        resultado.innerHTML = '<p>Seu resultado foi: ' + imc + '</p> <p>Você está abaixo do peso!</p> <p>Seu peso ideal seria: ' + pesoIdeal.toFixed(2)  + 'kg</p>';
+    } else if ((imc > 18.49) && (imc <= 25)) {
+        resultado.innerHTML = '<p>Seu resultado foi: ' + imc + '</p> <p>Você está no peso ideal!</p>';
     } else if ((imc > 25) && (imc <= 29.99)) {
-        resultado.innerHTML = '<br>Seu resultado foi: ' + imc.toFixed(2) + '<br> <br>Você está acima do peso!';
-    } else if (imc >= 30) {
-        resultado.innerHTML = '<br>Seu resultado foi: ' + imc.toFixed(2) + '<br> <br>Cuidado, obesidade!';
+        pesoIdeal = ((altura * altura) * 25);
+        resultado.innerHTML = '<p>Seu resultado foi: ' + imc + '</p> <p>Você está acima do peso!</p> <p>Seu peso ideal seria: ' + pesoIdeal.toFixed(2)  + 'kg</p>';
+    } else if (imc > 29.99) {
+        pesoIdeal = ((altura * altura) * 25);
+        resultado.innerHTML = '<p>Seu resultado foi: ' + imc + '</p> <p>Cuidado, obesidade!</p> <p>Seu peso ideal seria: ' + pesoIdeal.toFixed(2)  + 'kg</p>';
     }
 
     document.getElementById('peso').value = '';
