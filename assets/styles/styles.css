@@ -50,13 +50,11 @@ body {
     align-self: center;
     color: #fff;
     background-color: #2196F3;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-#resultado {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
-    text-align: justify;
+.container input[type="submit"]:hover {
+    background-color: #235f91;
+    border-color: #235f91;
 }
